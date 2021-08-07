@@ -1,0 +1,259 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+$hover: cadetblue;
+$danger: red;
+$cost: #ffd700;
+$altLight: #c7f0e8;
+$light: #f0ede6;
+$pink: #ffc0cb;
+$admin: #36a9e3;
+$nav: #f2392c;
+$body: #e2e1d6;
+
+body {
+  background-color: $body !important;
+  font-family: sans-serif !important;
+  .accordion-button{
+    box-shadow:none!important;
+  }
+  .App {
+    display: flex;
+    .Navbar {
+      color: white;
+      padding-top: 1rem;
+      background-color: black;
+      .navbar-Nav {
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        list-style: none;
+        #desktop{
+          @media only screen and (max-width:625px){
+            display: none;
+          }
+        }
+        .canvas{
+          @media only screen and (min-width: 625px){
+            display:none;
+          }
+        }
+        div {
+          width: 50%;
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+    }
+  }
+
+  #d1{
+    background:url("../img/delivery.jpeg");
+    min-height: 500px; 
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+  .hover:hover {
+    cursor: pointer;
+  }
+  .nohover:hover {
+    cursor: auto;
+    transform: translateX(0) !important;
+  }
+
+  .login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #d2 {
+    @keyframes move {
+      from {
+        transform: translateX(0px);
+      }
+      to {
+        transform: translateX(20vw);
+      }
+    }
+    img {
+      animation: ease 4s both;
+    }
+    background: linear-gradient(
+      to bottom,
+      rgb(56, 57, 61),
+      rgba(56, 57, 61, 0.1)
+    );
+    height: auto;
+    width: 40% !important;
+  }
+
+  .testimonial {
+    height: auto;
+    background: linear-gradient(-45deg, #4cd9fc, #4acff0, #49b4f2, #4d9ff7);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    ul{
+      list-style:none;
+      li{
+        button,.btn-light,.rounded-circle{
+          border: 0;
+          height: 2.5rem;
+          width: 2.5rem;
+        }
+      }
+    }
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  }
+
+  #admin {
+    text-align: center;
+  }
+
+  .admin {
+    background: url("../img/background.jpeg");
+    background-size: cover;
+    padding-top: 2rem;
+  }
+
+  #bt {
+    letter-spacing: 0.125em;
+  }
+
+  .h1 {
+    text-align: center;
+  }
+
+  #login {
+    border-radius: 2vmax;
+    background-color: white;
+    min-width: 80%;
+  }
+
+  #flex {
+    display: flex;
+  }
+
+  #log-out {
+    transform: translateY(10vh);
+  }
+
+  .btn {
+    border: 0 !important;
+    outline: 0 !important;
+  }
+
+  .food {
+    height: 20vh;
+    width: 100%;
+  }
+
+  .card:hover {
+    transform: translateY(-1vh);
+    border-color: $hover !important;
+    cursor: pointer;
+  }
+
+  .cost {
+    position: absolute;
+    bottom: 0cm;
+    font-size: 1.25em;
+  }
+
+  .add {
+    margin-bottom: 3em;
+    position: absolute;
+    right: 0;
+    margin-right: 1em;
+  }
+
+  .list-group-item {
+    height: 5rem;
+  }
+
+  .list-group-item:hover {
+    transform: translateY(-8px);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+}
+
+.credits {
+  img {
+    margin: auto;
+    height: 25%;
+    width: 25%;
+  }
+  a {
+    font-size: 3rem;
+  }
+}
+
+#large {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$custom-theme-colors: (
+  "altLight": $altLight,
+  "pink": $pink,
+  "admin": $admin,
+  "nav": $nav,
+  "body": $body,
+);
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer*6
+);
+
+$negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+@import "../../node_modules//bootstrap/scss/bootstrap.scss";
+
+@media only screen and (min-width: 1079px) {
+  .mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .desktop {
+    display: none;
+  }
+}
+
+.btn {
+  box-shadow: none !important;
+}
