@@ -4,6 +4,7 @@
 Contains code related to core-review of DEVSOC.
 The project is deployed at [quickstart](https://bp-gc.in/quickstart)
 
+**Note: In order to access the admin section credentials are required for which you have to contact me.**
 
 ## Environment Variables
 
@@ -11,9 +12,9 @@ To run this project, you will need to add the following environment variables to
 
 Client side:
 
-`REACT_APP_SERVER`(The server url)
+`REACT_APP_SERVER`(The server url i.e in my case http://localhost:8000)
 
-`REACT_APP_CLIENT`
+`REACT_APP_CLIENT`(The client url i.e in my case http://localhost:3000)
 
 `REACT_APP_CLIENT_ID`
 
@@ -25,13 +26,12 @@ Server side:
 
 `CLIENT_SECRET`
 
-`salt`
-
 `oauth`
 
 `admin`
 
 `CLIENT`(The client url)
+
 ## Run Locally
 
 Clone the project
