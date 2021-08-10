@@ -2,7 +2,7 @@
 # Quickstart
 
 Contains code related to core-review of DEVSOC.
-The project is deployed at bp-gc.in/quickstart
+The project is deployed at [quickstart](bp-gc.in/quickstart)
 
 
 ## Environment Variables
