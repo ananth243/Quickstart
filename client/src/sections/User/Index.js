@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 const Index = () => {
   const history = useHistory();
-  const [data, error] = useFetch("http://localhost:8000/app/");
+  const [data, error] = useFetch("http://localhost:8000/api/");
   if (error) {
     history.push("/");
   }

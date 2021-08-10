@@ -20,7 +20,7 @@ const Rating = () => {
         rating.push(parseInt(formRef.current.children[i].value));
     }
     axios
-      .post(`${process.env.REACT_APP_SERVER}/app/rating`, {
+      .post(`${process.env.REACT_APP_SERVER}/api/rating`, {
         headers: {
           jwt: localStorage.getItem("jwt"),
         },

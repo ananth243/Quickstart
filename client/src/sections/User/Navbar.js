@@ -92,7 +92,7 @@ const Navbar = () => {
               </a>
             </li>
           ))}
-          <li className="nav-item desktop">
+          <li className="nav-item desktop log">
             <a
               onClick={Logout}
               className="nav-link mt-2"

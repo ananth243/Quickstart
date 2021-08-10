@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Incoming from "./Incoming";
 import Finished from "./Finished";
-import Credits from "./Credits";
 import { useHistory } from "react-router-dom";
 import logo from "../../img/Quickstart.png";
+import Create from "./CreateUser";
 
 const Orders = () => {
   const [button1, setButton1] = useState(true);
   const [button2, setButton2] = useState(false);
+  const [button3, setButton3] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const history = useHistory();
 
@@ -17,6 +18,7 @@ const Orders = () => {
   }
   function Push() {
     setButton1(false);
+    setButton3(false);
     setDropdown(false);
     setButton2(true);
   }
@@ -64,10 +66,19 @@ const Orders = () => {
                 {dropdown && (
                   <ul
                     className="dropdown-menu"
+                    style={{width:"50rem"}}
                     aria-labelledby="dropdownMenuButton1"
                   >
                     <li className="hover dropdown-item" onClick={Logout}>
                       Logout
+                    </li>
+                    <li className="hover dropdown-item" onClick={()=>{
+                      setButton3(true);
+                      setButton2(false);
+                      setButton1(false);
+                      setDropdown(false);
+                    }}>
+                      New
                     </li>
                   </ul>
                 )}
@@ -88,6 +99,7 @@ const Orders = () => {
             }`}
             onClick={() => {
               setButton1(true);
+              setButton3(false);
               setDropdown(false);
               setButton2(false);
             }}
@@ -113,6 +125,7 @@ const Orders = () => {
       <div style={{ marginTop: "12rem" }}>
         {button1 && <Incoming Push={Push} />}
         {button2 && <Finished />}
+        {button3 && <Create />}
       </div>
     </>
   );

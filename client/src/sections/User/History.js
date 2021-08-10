@@ -8,7 +8,7 @@ import Modal from "../../../node_modules/bootstrap/js/src/modal";
 const History = () => {
   const history = useHistory();
   const modalRef = useRef();
-  const [data, error] = useFetch(`${process.env.REACT_APP_SERVER}/app/history`);
+  const [data, error] = useFetch(`${process.env.REACT_APP_SERVER}/api/history`);
   if (error) {
     history.push("/");
   }
@@ -62,12 +62,15 @@ const History = () => {
         <div className="container-md">
           <p className="display-6 text-dark">History of your past orders</p>
           {data.data.orders.map((order) => (
-            <Card info={true} order={order} key={order._id}/>
+            <Card info={true} order={order} key={order._id} />
           ))}
         </div>
       )}
       {!data && (
-        <div className="d-flex justify-content-center" style={{marginTop:"5rem"}}>
+        <div
+          className="d-flex justify-content-center"
+          style={{ marginTop: "5rem" }}
+        >
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

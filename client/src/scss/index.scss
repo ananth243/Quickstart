@@ -2,10 +2,8 @@
 
 $hover: cadetblue;
 $danger: red;
-$cost: #ffd700;
 $altLight: #c7f0e8;
 $light: #f0ede6;
-$pink: #ffc0cb;
 $admin: #36a9e3;
 $nav: #f2392c;
 $body: #e2e1d6;
@@ -69,27 +67,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  #d2 {
-    @keyframes move {
-      from {
-        transform: translateX(0px);
-      }
-      to {
-        transform: translateX(20vw);
-      }
-    }
-    img {
-      animation: ease 4s both;
-    }
-    background: linear-gradient(
-      to bottom,
-      rgb(56, 57, 61),
-      rgba(56, 57, 61, 0.1)
-    );
-    height: auto;
-    width: 40% !important;
   }
 
   .testimonial {
@@ -196,6 +173,10 @@ body {
   }
 }
 
+.log:hover{
+  cursor: pointer;
+}
+
 .credits {
   img {
     margin: auto;
@@ -220,7 +201,6 @@ body {
 
 $custom-theme-colors: (
   "altLight": $altLight,
-  "pink": $pink,
   "admin": $admin,
   "nav": $nav,
   "body": $body,

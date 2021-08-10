@@ -18,7 +18,7 @@ const Orders = () => {
   const [total, setTotal] = useState(0);
   const addressRef = useRef();
   const [data, error] = useFetch(
-    `${process.env.REACT_APP_SERVER}/app/order/${id}`
+    `${process.env.REACT_APP_SERVER}/api/order/${id}`
   );
   if (error) {
     history.push("/");
@@ -56,7 +56,7 @@ const Orders = () => {
           atob(localStorage.getItem("jwt").split(".")[1])
         );
         axios
-          .post(`${process.env.REACT_APP_SERVER}/app/order/${id}`, {
+          .post(`${process.env.REACT_APP_SERVER}/api/order/${id}`, {
             headers: {
               jwt: localStorage.getItem("jwt"),
             },
@@ -90,7 +90,9 @@ const Orders = () => {
               alt={data.data.rest_name}
               className="img-thumbnail border border-3 rounded"
             />
-            <p className="text-muted ms-1 mt-4">{data.data.details.description}</p>
+            <p className="text-muted ms-1 mt-4">
+              {data.data.details.description}
+            </p>
             <p className="fs-2">Our Menu: </p>
           </div>
           <br />
@@ -166,18 +168,23 @@ const Orders = () => {
                     key={order._id}
                     className="list-group-item d-flex justify-content-between align-items-center"
                   >
-                    <input type="text" disabled value={order.name} />
-                    <span className="badge bg-primary rounded-pill">
-                      {order.cost}
+                    <input
+                      type="text"
+                      disabled
+                      className="ms-4 bg-info text-white border-0 text-center"
+                      value={order.name}
+                    />
+                    <span className="badge bg-info rounded-pill">
+                      &#8377; {order.cost}
                     </span>
-                    <span className="badge bg-primary rounded-pill">
+                    <span className="badge bg-info rounded-pill me-6">
                       {order.quantity}
                     </span>
                   </li>
                 ))}
               </ul>
               <div
-                className="input-group ms-3"
+                className={`input-group ms-3 mb-${total === 0 ? 5 : 3}`}
                 style={{ width: "97%" }}
               >
                 <span className="input-group-text">Your delivery address:</span>
@@ -190,11 +197,13 @@ const Orders = () => {
                 ></textarea>
               </div>
               {total !== 0 && (
-                <h2 className="text-cost ms-4 mt-4">
-                  Your total is: &#8377;{total}
-                </h2>
+                <>
+                  <h2 className="text-danger ms-3 mt-2">
+                    Your total is: &#8377;{total}
+                  </h2>
+                  <button className="btn btn-primary ms-4 mb-5">Submit</button>
+                </>
               )}
-              <button className="btn btn-primary mt-5 ms-3 mb-4">Submit</button>
             </form>
           </div>
         </>

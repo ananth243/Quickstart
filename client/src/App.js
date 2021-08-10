@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "./img/Quickstart.png";
-import Credits from "./sections/Admin/Credits";
+import Credits from "./sections/Credits";
 
 function App() {
   const [data, setData] = useState(null);

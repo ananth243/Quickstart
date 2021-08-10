@@ -5,14 +5,14 @@ import axios from "axios";
 
 const Order = () => {
   const history = useHistory();
-  let [data, error] = useFetch(`${process.env.REACT_APP_SERVER}/app/orders`);
+  let [data, error] = useFetch(`${process.env.REACT_APP_SERVER}/api/orders`);
   if (error) {
     history.push("/");
   }
   function orderDelete(e, id) {
     e.preventDefault();
     axios
-      .delete(`${process.env.REACT_APP_SERVER}/app/delete/${id}`, {
+      .delete(`${process.env.REACT_APP_SERVER}/api/delete/${id}`, {
         headers: {
           jwt: localStorage.getItem("jwt"),
         },
