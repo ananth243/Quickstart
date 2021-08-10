@@ -57,10 +57,10 @@ router.get("/orders", async (req, res, next) => {
 router.get("/history", async (req, res, next) => {
   try {
     const { id } = await userInfo(req.headers.jwt);
-    const orders = await Order.find({ orderId: id, delivered: 1 });
+    const orders = await Order.find({ orderId: id, delivered: 1 }).sort({'updatedAt':-1});
     res.json({ orders });
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 

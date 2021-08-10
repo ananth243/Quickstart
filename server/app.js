@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 app.use(statRoutes);
 app.use("/auth", authRoutes);
-app.use("/app", appRoutes);
+app.use("/api", appRoutes);
 app.use("/admin", adminRoutes);
 
 app.use((req, res, next) => {

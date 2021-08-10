@@ -74,6 +74,12 @@ const appAuthCheck = (req, res, next) => {
   });
 };
 
+async function hashPWD(pwd){
+  const salt= await bcrypt.genSalt();
+  pwd = await bcrypt.hash(pwd, salt);
+  return pwd;
+}
+
 module.exports = {
   oauth,
   createOauthToken,
@@ -81,5 +87,6 @@ module.exports = {
   verify,
   authCheck,
   userInfo,
-  appAuthCheck
+  appAuthCheck,
+  hashPWD
 };

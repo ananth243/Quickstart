@@ -1,7 +1,12 @@
 const router = require("express").Router();
 const Admin = require("../models/adminUser");
 const { Restaurant } = require("../models/restaurants");
-const { createAdminToken, authCheck, verify } = require("../config/oauth");
+const {
+  createAdminToken,
+  authCheck,
+  verify,
+  hashPWD,
+} = require("../config/oauth");
 const Order = require("../models/order");
 
 router.post("/", async (req, res, next) => {
@@ -41,7 +46,7 @@ router.post("/update", async (req, res, next) => {
       let order = req.body.body[i];
       if (order.delivered === 1) {
         Order.findByIdAndUpdate(order._id, { delivered: 1 }, (err, doc) => {
-          if (err) next(err);
+          if (err) console.log(err.message);
         });
       }
     }
@@ -52,8 +57,20 @@ router.post("/update", async (req, res, next) => {
 });
 
 router.get("/delivered", async (req, res) => {
-  const orders = await Order.find({ delivered: 1 });
+  const orders = await Order.find({ delivered: 1 }).sort({ updatedAt: -1 });
   res.json({ orders });
+});
+
+router.post("/create", async (req, res) => {
+  try {
+    let { username, password } = req.body;
+    password = await hashPWD(password);
+    const admin = new Admin({ username, password });
+    await admin.save();
+    res.json({ message: "User Saved succesfully" });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
