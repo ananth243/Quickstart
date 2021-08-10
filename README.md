@@ -2,7 +2,7 @@
 # Quickstart
 
 Contains code related to core-review of DEVSOC.
-
+The project is deployed at bp-gc.in/quickstart
 
 
 ## Environment Variables
@@ -61,4 +61,4 @@ Start the server
 Same for the client directory
 ## Deployment
 
-To deploy this project run you have to have two independent url's, one for the client and one for the server.
+To deploy this project you have to have two independent url's, one for the client and one for the server.
