@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const menuSchema = new Schema({
   name: {
@@ -14,7 +14,7 @@ const menuSchema = new Schema({
     required: true,
   },
   sort: {
-    //0 is vegetarian, 1 is non-vegetarian
+    // 0 is vegetarian, 1 is non-vegetarian
     type: Number,
     default: 0,
     required: true,
@@ -47,7 +47,7 @@ const restModel = new Schema({
   menu: [menuSchema],
 });
 
-const Restaurant = model("restaurant", restModel);
-const Menu = model("menu", menuSchema);
+const Restaurant = model('restaurant', restModel);
+const Menu = model('menu', menuSchema);
 
 module.exports = { Menu, Restaurant };

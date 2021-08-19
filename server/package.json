@@ -1,30 +1,39 @@
 {
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-rate-limit": "^5.3.0",
-    "form-data": "^4.0.0",
-    "googleapis": "^83.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.1",
-    "morgan": "^1.10.0",
-    "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.12",
-    "socket.io": "^4.1.3"
-  },
-  "name": "server",
-  "version": "1.0.0",
-  "main": "app.js",
-  "scripts": {
-    "dev": "nodemon app",
-    "start": "node app",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run bild --prefix client"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
-}
+    "dependencies": {
+      "bcrypt": "^5.0.1",
+      "body-parser": "^1.19.0",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "express-rate-limit": "^5.3.0",
+      "googleapis": "^83.0.0",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^5.13.1",
+      "morgan": "^1.10.0",
+      "nodemon": "^2.0.12"
+    },
+    "name": "server",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+      "dev": "nodemon app",
+      "start": "node app",
+      "lint": "eslint ./",
+      "lint-fix": "eslint ./ --fix",
+      "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+    },
+    "keywords": [],
+    "author": "Ananth Raghav",
+    "license": "ISC",
+    "description": "A food delivery app",
+    "engines": {
+      "node": "14.x"
+    },
+    "devDependencies": {
+      "eslint": "^7.32.0",
+      "eslint-config-airbnb": "^18.2.1",
+      "eslint-config-prettier": "^8.3.0",
+      "eslint-plugin-prettier": "^3.4.0",
+      "prettier": "^2.3.2"
+    }
+  }
+  

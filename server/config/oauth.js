@@ -1,6 +1,6 @@
-const { google } = require("googleapis");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const { google } = require('googleapis');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 async function oauth(req, next) {
   try {
@@ -18,66 +18,85 @@ async function oauth(req, next) {
   }
 }
 
-async function createOauthToken(payload) {
-  return await jwt.sign(
-    {
-      user: payload.username,
-      id: payload._id,
-      img: payload.image,
-    },
-    process.env.oauth,
-    { expiresIn: 60 * 60 }
-  );
+async function createOauthToken(payload, next) {
+  try {
+    return await jwt.sign(
+      {
+        user: payload.username,
+        id: payload._id,
+        img: payload.image,
+      },
+      process.env.oauth,
+      { expiresIn: 15 * 60 }
+    );
+  } catch (error) {
+    next(error);
+  }
 }
 
-async function verify(pwd, hash) {
-  return await bcrypt.compare(pwd, hash);
+async function verify(pwd, hash, next) {
+  try {
+    return await bcrypt.compare(pwd, hash);
+  } catch (error) {
+    next(error);
+  }
 }
 
-async function createAdminToken(payload) {
-  return await jwt.sign(
-    {
-      user: payload.username,
-      id: payload._id,
-    },
-    process.env.admin,
-    { expiresIn: 60 * 60 }
-  );
+async function createAdminToken(payload, next) {
+  try {
+    return await jwt.sign(
+      {
+        user: payload.username,
+        id: payload._id,
+      },
+      process.env.admin,
+      { expiresIn: 15 * 60 }
+    );
+  } catch (error) {
+    next(error);
+  }
 }
 
 const authCheck = async (req, res, next) => {
-  const token = req.method === "GET" ? req.headers.jwt : req.body.headers.jwt;
-  jwt.verify(token, process.env.admin, (err, decodedToken) => {
-    if (err) {
-      res.status(401).json({ message: "Unauthorized" });
-    } else {
-      next();
-    }
-  });
+  try {
+    const token = req.method === 'GET' ? req.headers.jwt : req.body.headers.jwt;
+    const decodedToken = await jwt.verify(token, process.env.admin);
+    console.log(decodedToken);
+    next();
+  } catch (error) {
+    const err = new Error(`Unauthorized, ${error.message}`);
+    err.status = 401;
+    next(err);
+  }
 };
 
-const userInfo = async (token) => {
-  return await jwt.decode(token);
+const userInfo = async (token, next) => {
+  try {
+    return await jwt.decode(token);
+  } catch (error) {
+    next(error);
+  }
 };
 
-const appAuthCheck = (req, res, next) => {
-  const token =
-    req.method == "GET" || req.method == "DELETE"
-      ? req.headers.jwt
-      : req.body.headers.jwt;
-  jwt.verify(token, process.env.oauth, (err, decodedToken) => {
-    if (err) {
-        res.status(401).json({ message: "Unauthorized" });
-    } else {
-      next();
-    }
-  });
+const appAuthCheck = async (req, res, next) => {
+  try {
+    const token =
+      req.method === 'GET' || req.method === 'DELETE'
+        ? req.headers.jwt
+        : req.body.headers.jwt;
+    await jwt.verify(token, process.env.oauth);
+    next();
+  } catch (error) {
+    const err = new Error(`Unauthorized, ${error.message}`);
+    err.status = 401;
+    next(err);
+  }
 };
 
-async function hashPWD(pwd){
-  const salt= await bcrypt.genSalt();
-  pwd = await bcrypt.hash(pwd, salt);
-  return pwd;
+async function hashPWD(pwd) {
+  const salt = await bcrypt.genSalt();
+  const hash = await bcrypt.hash(pwd, salt);
+  return hash;
 }
 
 module.exports = {
@@ -87,6 +106,6 @@ module.exports = {
   verify,
   authCheck,
   userInfo,
+  hashPWD,
   appAuthCheck,
-  hashPWD
 };

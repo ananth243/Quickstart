@@ -1,5 +1,5 @@
-//The averge experience
-const User = require("../models/User");
+// The averge experience
+const User = require('../models/User');
 
 async function Testament() {
   const aggregate = await User.aggregate([
@@ -18,21 +18,21 @@ async function Testament() {
     },
     {
       $group: {
-        _id: "$username",
+        _id: '$username',
         image: {
-          $first: "$image",
+          $first: '$image',
         },
         experience: {
-          $first: "$experience",
+          $first: '$experience',
         },
         food: {
-          $first: "$food",
+          $first: '$food',
         },
         delivery: {
-          $first: "$delivery",
+          $first: '$delivery',
         },
         comments: {
-          $first: "$comments",
+          $first: '$comments',
         },
       },
     },

@@ -9,7 +9,7 @@ $nav: #f2392c;
 $body: #e2e1d6;
 
 body {
-  background-color: $body !important;
+  background-color: $light!important;
   font-family: sans-serif !important;
   .accordion-button{
     box-shadow:none!important;
@@ -67,6 +67,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  
+  #d2 {
+    @keyframes move {
+      from {
+        transform: translateX(0px);
+      }
+      to {
+        transform: translateX(20vw);
+      }
+    }
+    img {
+      animation: ease 4s both;
+    }
+    background: linear-gradient(
+      to bottom,
+      rgb(56, 57, 61),
+      rgba(56, 57, 61, 0.1)
+    );
+    height: auto;
+    width: 40% !important;
   }
 
   .testimonial {
@@ -171,10 +192,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
   }
-}
-
-.log:hover{
-  cursor: pointer;
 }
 
 .credits {

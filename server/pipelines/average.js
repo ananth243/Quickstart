@@ -1,5 +1,5 @@
-//The averge experience
-const User = require("../models/User");
+// The averge experience
+const User = require('../models/User');
 
 async function Aggregate() {
   const aggregate = await User.aggregate([
@@ -20,13 +20,13 @@ async function Aggregate() {
       $group: {
         _id: null,
         avgExperience: {
-          $avg: "$experience",
+          $avg: '$experience',
         },
         avgFood: {
-          $avg: "$food",
+          $avg: '$food',
         },
         avgDelivery: {
-          $avg: "$delivery",
+          $avg: '$delivery',
         },
       },
     },
