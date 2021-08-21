@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { MouseEvent, useRef, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import copy from 'copy-to-clipboard';
-import Popover from '../../../node_modules/bootstrap/js/src/popover';
-import Modal from '../../../node_modules/bootstrap/js/src/modal';
+import Popover from 'bootstrap/js/dist/popover';
+import Modal from 'bootstrap/js/dist/modal';
 
 const Create = () => {
    const [username, setName] = useState('Enter');
@@ -11,7 +11,7 @@ const Create = () => {
    const [nameError, setNameError] = useState('');
    const [passwordError, setPasswordError] = useState('');
    const history = useHistory();
-   const buttonRef = useRef();
+   const buttonRef: any = useRef<HTMLButtonElement>();
 
    function generate() {
       let pwd = '';
@@ -28,9 +28,10 @@ const Create = () => {
       }, 2000);
    }
 
-   function handleSubmit(e) {
+   function handleSubmit(e:MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
-      const modal = new Modal(document.querySelector('.modal'));
+      const myModal = document.querySelector('.modal') as HTMLDivElement;
+      const modal = new Modal(myModal);
       axios
          .post(`${process.env.REACT_APP_SERVER}/admin/create`, {
             username,

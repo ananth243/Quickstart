@@ -3,20 +3,27 @@ import useFetch from '../../Hooks/useFetch';
 import Card from '../../components/Cards';
 import { useHistory } from 'react-router-dom';
 import React, { useEffect, useRef } from 'react';
-import Modal from '../../../node_modules/bootstrap/js/src/modal';
+import Modal from 'bootstrap/js/dist/modal';
 import Loading from '../../components/Loading';
 
 const History = () => {
+   interface orders{
+      _id: string
+   }
+   interface datatype{
+      data: orders[],
+   }
    const history = useHistory();
-   const modalRef = useRef();
-   const [data, error] = useFetch(
+   const modalRef: any = useRef<HTMLDivElement>();
+   const [data, error] = useFetch<datatype>(
       `${process.env.REACT_APP_SERVER}/api/history`,
    );
    if (error) {
       history.push('/');
    }
    useEffect(() => {
-      const myModal = new Modal(modalRef.current);
+      const modal = modalRef.current as HTMLDivElement;
+      const myModal = new Modal(modal);
       if (!localStorage.getItem('popup')) {
          myModal.toggle();
          localStorage.setItem(
@@ -28,7 +35,8 @@ const History = () => {
    return (
       <>
          <Navbar />
-         <div ref={modalRef} className="modal fade" tabIndex="-1">
+         <div ref={modalRef} className="modal fade" //tabIndex="-1"
+         >
             <div className="modal-dialog">
                <div className="modal-content">
                   <div className="modal-header">

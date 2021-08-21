@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-const useFetch = url => {
-   const [data, setData] = useState(null);
+function useFetch<T>(url: string){
+   const [data, setData] = useState<T | null>(null);
    const [error, setError] = useState(null);
 
    useEffect(() => {
@@ -12,8 +12,8 @@ const useFetch = url => {
                jwt: localStorage.getItem('jwt'),
             },
          })
-         .then(data => {
-            setData(data);
+         .then((res: any) => {
+            setData(res);
             setError(null);
          })
          .catch(err => {

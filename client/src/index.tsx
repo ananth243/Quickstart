@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.min.css';
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import App from './App';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Callback from './sections/User/Callback';

@@ -4,8 +4,15 @@ import Card from '../../components/Cards';
 import useFetch from '../../Hooks/useFetch';
 
 const Order = () => {
+   interface orders{
+      _id: string
+   }
+   interface datatype{
+      data: orders[]
+   }
+
    const history = useHistory();
-   const [data, error] = useFetch(
+   const [data, error] = useFetch<datatype>(
       `${process.env.REACT_APP_SERVER}/admin/delivered`,
    );
    if (error) {
@@ -15,7 +22,7 @@ const Order = () => {
       <div className="container-fluid">
          {data &&
             data.data.orders.map(order => (
-               <Card key={order._id} order={order} />
+               <Card info={false} key={order._id} order={order} />
             ))}
       </div>
    );

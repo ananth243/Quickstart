@@ -1,7 +1,20 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-const Testaments = ({ testament }) => {
+export interface testaments{
+   _id:string,
+   image: string,
+   experience: number,
+   delivery: number,
+   food: number,
+   comments: string
+}
+
+interface props{
+   testament: testaments
+}
+
+const Testaments = (props: props) => {
+   const { testament } = props;
    return (
       <div className={`container-sm pb-3`}>
          <div className="card nohover mt-5">
@@ -32,14 +45,4 @@ const Testaments = ({ testament }) => {
    );
 };
 
-Testaments.propTypes = {
-   testament: propTypes.shape({
-      _id: propTypes.string,
-      image: propTypes.string,
-      experience: propTypes.string,
-      delivery: propTypes.string,
-      food: propTypes.string,
-      comments: propTypes.string,
-   }),
-};
 export default Testaments;

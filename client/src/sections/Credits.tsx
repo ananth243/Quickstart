@@ -1,4 +1,4 @@
-import Profile from '../img/me.jpg';
+const Profile =  require('../img/me.jpg');
 import React from 'react';
 
 const Credits = () => {

@@ -1,7 +1,15 @@
 import React from 'react';
-import { arrayOf, string } from 'prop-types';
 
-const Canvas = ({ header, links }) => {
+interface links{
+   link: string,
+   text: string,
+}
+interface props{
+   header: string,
+   links: links[],
+}
+const Canvas = (props: props) => {
+   const { header, links } = props;
    return (
       <>
          <div className="offcanvas-header">
@@ -30,14 +38,6 @@ const Canvas = ({ header, links }) => {
          </div>
       </>
    );
-};
-
-Canvas.propTypes = {
-   header: string,
-   links: arrayOf({
-      link: string,
-      text: string,
-   }),
 };
 
 export default Canvas;

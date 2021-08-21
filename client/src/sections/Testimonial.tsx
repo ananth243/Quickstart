@@ -5,7 +5,11 @@ import logo from '../img/Quickstart.png';
 import { useHistory } from 'react-router-dom';
 
 const Testimonial = () => {
-   const [data, setData] = useState(null);
+   interface testaments{
+      comments: string,
+      _id: string
+   }
+   const [data, setData] = useState<Array<testaments>>();
    const history = useHistory();
    useEffect(() => {
       axios.get(`${process.env.REACT_APP_SERVER}/testament`).then(res => {

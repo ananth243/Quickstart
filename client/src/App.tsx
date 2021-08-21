@@ -5,7 +5,10 @@ import Credits from './sections/Credits';
 import Canvas from './components/offCanvas';
 
 function App() {
-   const [data, setData] = useState(null);
+   interface rating{
+      avgExperience: Number
+   }
+   const [data, setData] = useState<rating>({avgExperience: 10});
    useEffect(() => {
       axios
          .get(`${process.env.REACT_APP_SERVER}/ratings`)
@@ -77,7 +80,6 @@ function App() {
                      </ul>
                      <div
                         className="offcanvas offcanvas-end bg-light"
-                        tabIndex="-1"
                         id="offcanvasRight"
                         aria-labelledby="offcanvasRightLabel"
                      >

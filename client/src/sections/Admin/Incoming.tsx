@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import useFetch from '../../Hooks/useFetch';
 import axios from 'axios';
@@ -13,7 +13,7 @@ const Incoming = ({ Push }) => {
    if (error) {
       history.push('/admin');
    }
-   function submitForm(e) {
+   function submitForm(e: MouseEvent) {
       e.preventDefault();
       axios
          .post(`${process.env.REACT_APP_SERVER}/admin/update`, {

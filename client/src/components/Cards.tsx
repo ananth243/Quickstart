@@ -1,9 +1,33 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-const Card = ({ order, info, delivered = false }) => {
+interface items{
+   name: string,
+   quantity: number,
+   cost: number
+}
+
+interface restaurant{
+   rest_name: string,
+   user_id: string,
+   address: string,
+   items: items[],
+   delivered: 0 | 1,
+   total: number,
+   updatedAt: string,
+   createdAt: string
+}
+
+interface props{
+   order: restaurant,
+   key: string,
+   info: boolean,
+   delivered?: number
+}
+const Card = (props: props) => {
+   const {order, info, delivered, key} = props;
    return (
       <div
+      key={key}
          className="card"
          style={{ marginTop: '2.5rem', marginBottom: '2.5rem' }}
       >
@@ -65,25 +89,6 @@ const Card = ({ order, info, delivered = false }) => {
          )}
       </div>
    );
-};
-
-Card.propTypes = {
-   order: propTypes.arrayOf({
-      rest_name: propTypes.string,
-      user_id: propTypes.string,
-      address: propTypes.string,
-      items: propTypes.arrayOf({
-         name: propTypes.string,
-         quantity: propTypes.number,
-         cost: propTypes.number,
-      }),
-      createdAt: propTypes.string,
-      updatedAt: propTypes.string,
-      delivered: propTypes.number,
-      total: propTypes.total,
-   }),
-   info: propTypes.bool,
-   delivered: propTypes.bool,
 };
 
 export default Card;

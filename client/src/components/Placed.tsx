@@ -1,7 +1,15 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-const Placed = ({ order }) => {
+interface order{
+   name: string,
+   cost: number,
+   quantity: number
+}
+interface props{
+   order: order
+}
+const Placed = (props: props) => {
+   const {order} = props
    return (
       <>
          <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -21,13 +29,4 @@ const Placed = ({ order }) => {
       </>
    );
 };
-
-Placed.propTypes = {
-   order: propTypes.shape({
-      name: propTypes.string,
-      cost: propTypes.number,
-      quantity: propTypes.number,
-   }),
-};
-
 export default Placed;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import offCanvas from '../../../node_modules/bootstrap/js/src/offcanvas';
+import offCanvas from 'bootstrap/js/src/offcanvas';
 
 const Navbar = () => {
    const [link, setLink] = useState('');
@@ -21,8 +21,9 @@ const Navbar = () => {
 
    useEffect(() => {
       if (localStorage.getItem('jwt')) {
+         const jwt: any = localStorage.getItem('jwt');
          let { user, img } = JSON.parse(
-            atob(localStorage.getItem('jwt').split('.')[1]),
+            atob(jwt.split('.')[1]),
          );
          setLink(img);
          setUser(user);

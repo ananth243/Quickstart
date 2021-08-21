@@ -1,15 +1,20 @@
 //Scrapped this idea
-import React, { createContext, useContext, useRef } from 'react';
+import React, { ComponentElement, createContext, useContext, useRef } from 'react';
 import { Route } from 'react-router-dom';
 import Login from '../sections/Admin/Login';
-import propTypes from 'prop-types';
+
 const AuthContext = createContext();
 
 export function useAuth() {
    return useContext(AuthContext);
 }
 
-function AuthProvider({ children }) {
+interface props{
+   children:  ComponentElement[]
+}
+
+function AuthProvider(props: props) {
+   const {children} = props;
    const auth = useRef(localStorage.getItem('jwt') ? true : false);
    return (
       <AuthContext.Provider value={auth}>
@@ -21,9 +26,5 @@ function AuthProvider({ children }) {
       </AuthContext.Provider>
    );
 }
-
-AuthProvider.propTypes = {
-   children: propTypes.arrayOf(propTypes.element),
-};
 
 export default AuthProvider;

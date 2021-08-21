@@ -1,7 +1,19 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-const Items = ({ food, click }) => {
+interface food{
+   _id: string,
+   image: string,
+   name: string,
+   sort: 0 | 1,
+   cost: number,
+}
+interface props{
+   food: food,
+   click: () => void;
+}
+
+const Items = (props: props) => {
+   const {food, click} = props;
    return (
       <div
          id={food._id}
@@ -62,15 +74,4 @@ const Items = ({ food, click }) => {
       </div>
    );
 };
-
-Items.propTypes = {
-   food: propTypes.arrayOf({
-      id: propTypes.string,
-      image: propTypes.string,
-      name: propTypes.string,
-      sort: propTypes.number,
-   }),
-   click: propTypes.func,
-};
-
 export default Items;

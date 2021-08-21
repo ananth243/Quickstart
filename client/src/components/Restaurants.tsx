@@ -1,7 +1,23 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-const Restaurant = ({ restaurant, index }) => {
+interface details{
+   address: string,
+   description: string,
+   image: string
+}
+
+interface restaurant{
+   rest_name: string,
+   _id: string,
+   details: details
+}
+
+interface props{
+   index: number,
+   restaurant: restaurant
+}
+const Restaurant = (props: props) => {
+   const { restaurant, index } = props;
    return (
       <div className="accordion-item mt-3">
          <h2 className="accordion-header" id={`heading${index}`}>
@@ -49,19 +65,6 @@ const Restaurant = ({ restaurant, index }) => {
          </div>
       </div>
    );
-};
-
-Restaurant.propTypes = {
-   restaurant: propTypes.shape({
-      rest_name: propTypes.string,
-      _id: propTypes.string,
-      details: propTypes.arrayOf({
-         address: propTypes.string,
-         image: propTypes.string,
-         description: propTypes.string,
-      }),
-   }),
-   index: propTypes.number,
 };
 
 export default Restaurant;
