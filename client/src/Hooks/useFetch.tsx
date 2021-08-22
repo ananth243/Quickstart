@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
-function useFetch<T>(url: string){
-   const [data, setData] = useState<T | null>(null);
-   const [error, setError] = useState(null);
+function useFetch<T>(url: string) {
+   const [data, setData] = useState<null | T>(null);
+   const [error, setError] = useState<null | string>(null);
 
    useEffect(() => {
       axios
@@ -13,7 +13,7 @@ function useFetch<T>(url: string){
             },
          })
          .then((res: any) => {
-            setData(res);
+            setData(res.data);
             setError(null);
          })
          .catch(err => {
@@ -21,7 +21,7 @@ function useFetch<T>(url: string){
          });
    }, [url]);
 
-   return [data, error];
-};
+   return { data, error };
+}
 
 export default useFetch;

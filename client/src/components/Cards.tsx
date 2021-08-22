@@ -1,33 +1,16 @@
 import React from 'react';
-
-interface items{
-   name: string,
-   quantity: number,
-   cost: number
-}
-
-interface restaurant{
-   rest_name: string,
-   user_id: string,
-   address: string,
-   items: items[],
-   delivered: 0 | 1,
-   total: number,
-   updatedAt: string,
-   createdAt: string
-}
-
-interface props{
-   order: restaurant,
-   key: string,
-   info: boolean,
-   delivered?: number
+import { order } from '../interfaces/order';
+interface props {
+   order: order;
+   key: string;
+   info: boolean;
+   delivered?: number;
 }
 const Card = (props: props) => {
-   const {order, info, delivered, key} = props;
+   const { order, info, delivered, key } = props;
    return (
       <div
-      key={key}
+         key={key}
          className="card"
          style={{ marginTop: '2.5rem', marginBottom: '2.5rem' }}
       >

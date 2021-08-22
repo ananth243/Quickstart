@@ -28,7 +28,7 @@ const Create = () => {
       }, 2000);
    }
 
-   function handleSubmit(e:MouseEvent<HTMLButtonElement>) {
+   function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
       const myModal = document.querySelector('.modal') as HTMLDivElement;
       const modal = new Modal(myModal);

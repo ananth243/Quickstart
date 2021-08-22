@@ -1,15 +1,10 @@
 import React from 'react';
-
-interface order{
-   name: string,
-   cost: number,
-   quantity: number
-}
-interface props{
-   order: order
+import { items as order } from '../interfaces/order';
+interface props {
+   order: order;
 }
 const Placed = (props: props) => {
-   const {order} = props
+   const { order } = props;
    return (
       <>
          <li className="list-group-item d-flex justify-content-between align-items-center">

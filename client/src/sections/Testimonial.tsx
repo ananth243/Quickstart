@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../img/Quickstart.png';
 import { useHistory } from 'react-router-dom';
+import { testaments } from '../interfaces/testament';
 
 const Testimonial = () => {
-   interface testaments{
-      comments: string,
-      _id: string
-   }
-   const [data, setData] = useState<Array<testaments>>();
+   const [data, setData] = useState<testaments[]>();
    const history = useHistory();
    useEffect(() => {
       axios.get(`${process.env.REACT_APP_SERVER}/testament`).then(res => {

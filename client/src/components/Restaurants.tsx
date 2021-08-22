@@ -1,20 +1,8 @@
 import React from 'react';
-
-interface details{
-   address: string,
-   description: string,
-   image: string
-}
-
-interface restaurant{
-   rest_name: string,
-   _id: string,
-   details: details
-}
-
-interface props{
-   index: number,
-   restaurant: restaurant
+import { restaurant } from '../interfaces/restaurant';
+interface props {
+   index: number;
+   restaurant: restaurant;
 }
 const Restaurant = (props: props) => {
    const { restaurant, index } = props;

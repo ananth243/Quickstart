@@ -1,19 +1,12 @@
 import React from 'react';
-
-interface food{
-   _id: string,
-   image: string,
-   name: string,
-   sort: 0 | 1,
-   cost: number,
-}
-interface props{
-   food: food,
-   click: () => void;
+import { food } from '../interfaces/restaurant';
+interface props {
+   food: food;
+   click: <HTMLButtonElement, MouseEvent>(e: MouseEvent) => void;
 }
 
 const Items = (props: props) => {
-   const {food, click} = props;
+   const { food, click } = props;
    return (
       <div
          id={food._id}

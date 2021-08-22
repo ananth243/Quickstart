@@ -7,7 +7,7 @@ import { func } from 'prop-types';
 
 const Incoming = ({ Push }) => {
    const history = useHistory();
-   const [data, error] = useFetch(
+   const { data, error } = useFetch(
       `${process.env.REACT_APP_SERVER}/admin/orders`,
    );
    if (error) {
@@ -20,7 +20,7 @@ const Incoming = ({ Push }) => {
             headers: {
                jwt: localStorage.getItem('jwt'),
             },
-            body: data.data.orders,
+            body: data.orders,
          })
          .then(() => {
             Push();
@@ -32,11 +32,11 @@ const Incoming = ({ Push }) => {
          {data && (
             <>
                <div className="container-fluid">
-                  {data.data.orders.map((order, index) => (
+                  {data.orders.map((order, index) => (
                      <Card key={index} order={order} delivered={true} />
                   ))}
                </div>
-               {data.data.orders.length !== 0 && (
+               {data.orders.length !== 0 && (
                   <button
                      onClick={submitForm}
                      className="btn btn-primary ms-2 mt-5"
@@ -44,7 +44,7 @@ const Incoming = ({ Push }) => {
                      Done
                   </button>
                )}
-               {data.data.orders.length === 0 && (
+               {data.orders.length === 0 && (
                   <h3 className="display-6 ms-4">
                      All Orders have been delivered
                   </h3>

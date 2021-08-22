@@ -4,10 +4,11 @@ import { useHistory } from 'react-router-dom';
 import Navbar from './Navbar';
 import Restaurant from '../../components/Restaurants';
 import Loading from '../../components/Loading';
+import { restaurant } from '../../interfaces/restaurant';
 
 const Index = () => {
    const history = useHistory();
-   const [data, error] = useFetch(
+   const { data, error } = useFetch<restaurant[]>(
       `${process.env.REACT_APP_SERVER}/api/restaurants`,
    );
    if (error) {
@@ -24,7 +25,7 @@ const Index = () => {
                </h3>
                <div className="accordion container-md w-75 pb-5" id="accordion">
                   {data &&
-                     data.data.map((restaurant, index) => (
+                     data.map((restaurant, index) => (
                         <Restaurant
                            key={index}
                            index={index}

@@ -5,17 +5,15 @@ import { useHistory } from 'react-router-dom';
 import React, { useEffect, useRef } from 'react';
 import Modal from 'bootstrap/js/dist/modal';
 import Loading from '../../components/Loading';
+import { order } from '../../interfaces/order';
 
 const History = () => {
-   interface orders{
-      _id: string
-   }
-   interface datatype{
-      data: orders[],
+   interface datatype {
+      orders: order[];
    }
    const history = useHistory();
    const modalRef: any = useRef<HTMLDivElement>();
-   const [data, error] = useFetch<datatype>(
+   const { data, error } = useFetch<datatype>(
       `${process.env.REACT_APP_SERVER}/api/history`,
    );
    if (error) {
@@ -35,8 +33,7 @@ const History = () => {
    return (
       <>
          <Navbar />
-         <div ref={modalRef} className="modal fade" //tabIndex="-1"
-         >
+         <div ref={modalRef} className="modal fade" tabIndex={-1}>
             <div className="modal-dialog">
                <div className="modal-content">
                   <div className="modal-header">
@@ -64,17 +61,17 @@ const History = () => {
             </div>
          </div>
          <div className="container-md mb-3" style={{ marginTop: '10vh' }}></div>
-         {data && data.data.orders.length === 0 && (
+         {data && data.orders.length === 0 && (
             <div className="container-md">
                <p className="display-6 text-dark">No delivered orders yet!</p>
             </div>
          )}
-         {data && data.data.orders.length !== 0 && (
+         {data && data.orders.length !== 0 && (
             <div className="container-md">
                <p className="display-6 text-dark">
                   History of your past orders
                </p>
-               {data.data.orders.map(order => (
+               {data.orders.map(order => (
                   <Card info={true} order={order} key={order._id} />
                ))}
             </div>

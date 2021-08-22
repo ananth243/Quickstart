@@ -6,15 +6,14 @@ const Navbar = () => {
    const [link, setLink] = useState('');
    const [user, setUser] = useState('');
    const history = useHistory();
-   const navRef = useRef();
-   const buttonRef = useRef();
+   const navRef = useRef<HTMLDivElement>(null);
+   const buttonRef = useRef<HTMLButtonElement>(null);
    const links = [
       ['Placed Orders', '/orders'],
       ['Order History', '/delivered'],
       ['Rate us', '/rating'],
    ];
-   function Logout(e) {
-      e.preventDefault();
+   function Logout() {
       localStorage.removeItem('jwt');
       history.push('/');
    }
@@ -22,17 +21,17 @@ const Navbar = () => {
    useEffect(() => {
       if (localStorage.getItem('jwt')) {
          const jwt: any = localStorage.getItem('jwt');
-         let { user, img } = JSON.parse(
-            atob(jwt.split('.')[1]),
-         );
+         let { user, img } = JSON.parse(atob(jwt.split('.')[1]));
          setLink(img);
          setUser(user);
          const canvas = new offCanvas(navRef.current);
-         buttonRef.current.addEventListener('click', e => {
-            e.preventDefault();
-            e.stopPropagation();
-            canvas.toggle();
-         });
+         if (buttonRef && buttonRef.current) {
+            buttonRef.current.addEventListener('click', e => {
+               e.preventDefault();
+               e.stopPropagation();
+               canvas.toggle();
+            });
+         }
       } else {
          history.push('/');
       }
@@ -97,7 +96,7 @@ const Navbar = () => {
                <li className="nav-item desktop log">
                   <a
                      href=""
-                     onClick={Logout}
+                     onClick={() => Logout()}
                      className="nav-link mt-2"
                      style={{
                         textTransform: 'uppercase',
@@ -131,7 +130,6 @@ const Navbar = () => {
          <div
             ref={navRef}
             className="offcanvas offcanvas-start"
-            tabIndex="-1"
             id="example"
             aria-labelledby="label"
          >

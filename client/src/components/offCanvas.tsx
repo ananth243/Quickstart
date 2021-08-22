@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface links{
-   link: string,
-   text: string,
+interface links {
+   link: string;
+   text: string;
 }
-interface props{
-   header: string,
-   links: links[],
+interface props {
+   header: string;
+   links: links[];
 }
 const Canvas = (props: props) => {
    const { header, links } = props;

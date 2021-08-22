@@ -1,5 +1,11 @@
 //Scrapped this idea
-import React, { ComponentElement, createContext, useContext, useRef } from 'react';
+import React, {
+   ComponentElement,
+   createContext,
+   useContext,
+   useRef,
+} from 'react';
+import { ReactNode } from 'react';
 import { Route } from 'react-router-dom';
 import Login from '../sections/Admin/Login';
 
@@ -9,12 +15,12 @@ export function useAuth() {
    return useContext(AuthContext);
 }
 
-interface props{
-   children:  ComponentElement[]
+interface props {
+   children: ReactNode;
 }
 
 function AuthProvider(props: props) {
-   const {children} = props;
+   const { children } = props;
    const auth = useRef(localStorage.getItem('jwt') ? true : false);
    return (
       <AuthContext.Provider value={auth}>

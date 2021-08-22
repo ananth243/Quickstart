@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import Navbar from './Navbar';
 import useFetch from '../../Hooks/useFetch';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { order } from '../../interfaces/order';
 
 const Order = () => {
    const history = useHistory();
-   let [data, error] = useFetch(`${process.env.REACT_APP_SERVER}/api/orders`);
+   interface datatype {
+      orders: order[];
+   }
+   let { data, error } = useFetch<datatype>(
+      `${process.env.REACT_APP_SERVER}/api/orders`,
+   );
    if (error) {
       history.push('/');
    }
-   function orderDelete(e, id) {
+   function orderDelete(e: FormEvent, id: string) {
       e.preventDefault();
       axios
          .delete(`${process.env.REACT_APP_SERVER}/api/delete/${id}`, {
@@ -26,7 +32,7 @@ const Order = () => {
    return (
       <div>
          <Navbar />
-         {data && data.data.orders.length === 0 && (
+         {data && data.orders.length === 0 && (
             <div
                className=" background mt-6 ms-6"
                style={{ fontSize: '1.8rem' }}
@@ -34,11 +40,11 @@ const Order = () => {
                You haven&apos;t placed any orders yet
             </div>
          )}
-         {data && data.data.orders.length !== 0 && (
+         {data && data.orders.length !== 0 && (
             <div className=" background mt-6 p-5">
                <h3 className="display-6">Your current orders: </h3>
 
-               {data.data.orders.map((element, i) => (
+               {data.orders.map((element, i) => (
                   <div
                      key={element._id}
                      id={element._id}
@@ -80,13 +86,13 @@ const Order = () => {
                         </tbody>
                         <tfoot>
                            <tr>
-                              <td colSpan="2">
+                              <td colSpan={2}>
                                  Delivery Address: {element.address}
                               </td>
-                              <td colSpan="2">
+                              <td colSpan={2}>
                                  <table>
                                     <tr>
-                                       <td colSpan="2"> </td>
+                                       <td colSpan={2}> </td>
                                        <td style={{ textAlign: 'end' }}>
                                           Total Amount:{' '}
                                        </td>
@@ -95,7 +101,7 @@ const Order = () => {
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td colSpan="2"> </td>
+                                       <td colSpan={2}> </td>
                                        <td style={{ textAlign: 'end' }}>
                                           Ordered At:{' '}
                                        </td>
@@ -104,7 +110,7 @@ const Order = () => {
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td colSpan="2"> </td>
+                                       <td colSpan={2}> </td>
                                        <td style={{ textAlign: 'end' }}>
                                           IST:{' '}
                                        </td>
@@ -120,7 +126,7 @@ const Order = () => {
                      <div
                         data-bs-backdrop="static"
                         data-bs-keyboard="false"
-                        tabIndex="-1"
+                        tabIndex={-1}
                         className="modal bg-info fade"
                         id={`collapse${i}`}
                         aria-labelledby="exampleModalLabel"
@@ -173,7 +179,7 @@ const Order = () => {
                                              </tr>
                                           ))}
                                           <tr>
-                                             <td colSpan="2"> </td>
+                                             <td colSpan={2}> </td>
                                              <td style={{ textAlign: 'end' }}>
                                                 Total Amount:{' '}
                                              </td>
@@ -184,7 +190,7 @@ const Order = () => {
                                              </td>
                                           </tr>
                                           <tr>
-                                             <td colSpan="2"> </td>
+                                             <td colSpan={2}> </td>
                                              <td style={{ textAlign: 'end' }}>
                                                 Ordered At:{' '}
                                              </td>
@@ -195,7 +201,7 @@ const Order = () => {
                                              </td>
                                           </tr>
                                           <tr>
-                                             <td colSpan="2"> </td>
+                                             <td colSpan={2}> </td>
                                              <td style={{ textAlign: 'end' }}>
                                                 IST:{' '}
                                              </td>

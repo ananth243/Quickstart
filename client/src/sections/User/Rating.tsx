@@ -1,38 +1,43 @@
-import React, { useRef, useState } from 'react';
+import React, { LegacyRef, MouseEvent, useRef, useState } from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const Rating = () => {
-   const addressRef = useRef();
-   const formRef = useRef();
+   const addressRef = useRef<HTMLTextAreaElement>(null);
+   const formRef = useRef<HTMLFormElement>(null);
    const [comment, setComment] = useState('');
    const history = useHistory();
 
-   function submitForm(e) {
+   function submitForm(e: MouseEvent) {
       e.preventDefault();
       let rating = [];
-      if (comment === '') {
+      if (comment === '' && addressRef && addressRef.current) {
          addressRef.current.focus();
+      } else {
+         if (formRef && formRef.current) {
+            const children = formRef.current
+               .children as HTMLCollectionOf<HTMLInputElement>;
+            for (let i = 0; i < formRef.current.children.length; i++) {
+               const child = children[i];
+               if (child.type === 'range') rating.push(parseInt(child.value));
+            }
+            axios
+               .post(`${process.env.REACT_APP_SERVER}/api/rating`, {
+                  headers: {
+                     jwt: localStorage.getItem('jwt'),
+                  },
+                  body: {
+                     rating,
+                     comment,
+                  },
+               })
+               .then(() => {
+                  history.push('/app');
+               })
+               .catch(err => console.log(err));
+         }
       }
-      for (let i = 0; i < formRef.current.children.length; i++) {
-         if (formRef.current.children[i].type === 'range')
-            rating.push(parseInt(formRef.current.children[i].value));
-      }
-      axios
-         .post(`${process.env.REACT_APP_SERVER}/api/rating`, {
-            headers: {
-               jwt: localStorage.getItem('jwt'),
-            },
-            body: {
-               rating,
-               comment,
-            },
-         })
-         .then(() => {
-            history.push('/app');
-         })
-         .catch(err => console.log(err));
    }
    return (
       <>
@@ -101,11 +106,7 @@ const Rating = () => {
                   className="form-control"
                   aria-label="With textarea"
                />
-               <button
-                  className="btn btn-primary mt-5"
-                  onClick={submitForm}
-                  ref={addressRef}
-               >
+               <button className="btn btn-primary mt-5" onClick={submitForm}>
                   Submit Review
                </button>
             </form>

@@ -1,16 +1,7 @@
 import React from 'react';
-
-export interface testaments{
-   _id:string,
-   image: string,
-   experience: number,
-   delivery: number,
-   food: number,
-   comments: string
-}
-
-interface props{
-   testament: testaments
+import { testaments } from '../interfaces/testament';
+interface props {
+   testament: testaments;
 }
 
 const Testaments = (props: props) => {
