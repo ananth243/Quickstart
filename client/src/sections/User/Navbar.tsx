@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import offCanvas from 'bootstrap/js/src/offcanvas';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
    const [link, setLink] = useState('');
    const [user, setUser] = useState('');
    const history = useHistory();

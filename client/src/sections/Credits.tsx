@@ -1,7 +1,7 @@
 const Profile = require('../img/me.jpg');
 import React from 'react';
 
-const Credits = () => {
+const Credits: React.FC = () => {
    const links = [
       [
          'https://in.linkedin.com/in/ananth-raghav-2151a9200',

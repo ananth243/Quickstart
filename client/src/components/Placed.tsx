@@ -1,10 +1,10 @@
 import React from 'react';
+import { FC } from 'react';
 import { items as order } from '../interfaces/order';
 interface props {
    order: order;
 }
-const Placed = (props: props) => {
-   const { order } = props;
+const Placed: FC<props> = ({ order }) => {
    return (
       <>
          <li className="list-group-item d-flex justify-content-between align-items-center">

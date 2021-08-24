@@ -1,9 +1,9 @@
-import React, { LegacyRef, MouseEvent, useRef, useState } from 'react';
+import React, { MouseEvent, useRef, useState } from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-const Rating = () => {
+const Rating: React.FC = () => {
    const addressRef = useRef<HTMLTextAreaElement>(null);
    const formRef = useRef<HTMLFormElement>(null);
    const [comment, setComment] = useState('');
@@ -16,10 +16,9 @@ const Rating = () => {
          addressRef.current.focus();
       } else {
          if (formRef && formRef.current) {
-            const children = formRef.current
-               .children as HTMLCollectionOf<HTMLInputElement>;
+            const children = formRef.current.children as HTMLCollection;
             for (let i = 0; i < formRef.current.children.length; i++) {
-               const child = children[i];
+               const child = children[i] as HTMLInputElement;
                if (child.type === 'range') rating.push(parseInt(child.value));
             }
             axios

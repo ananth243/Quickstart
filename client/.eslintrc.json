@@ -13,6 +13,7 @@
       "Atomics": "readonly",
       "SharedArrayBuffer": "readonly"
    },
+   "parser": "@typescript-eslint/parser",
    "parserOptions": {
       "ecmaFeatures": {
          "jsx": true,
@@ -22,5 +23,7 @@
       "sourceType": "module"
    },
    "plugins": ["react"],
-   "rules": {}
+   "rules": {
+      "react/prop-types": 0
+   }
 }

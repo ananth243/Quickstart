@@ -4,8 +4,7 @@ interface props {
    index: number;
    restaurant: restaurant;
 }
-const Restaurant = (props: props) => {
-   const { restaurant, index } = props;
+const Restaurant: React.FC<props> = ({ restaurant, index }) => {
    return (
       <div className="accordion-item mt-3">
          <h2 className="accordion-header" id={`heading${index}`}>

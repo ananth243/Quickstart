@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { order } from '../../interfaces/order';
 
-const Order = () => {
+const Order: React.FC = () => {
    const history = useHistory();
    interface datatype {
       orders: order[];

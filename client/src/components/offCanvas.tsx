@@ -1,4 +1,5 @@
 import React from 'react';
+import { FC } from 'react';
 
 interface links {
    link: string;
@@ -8,8 +9,7 @@ interface props {
    header: string;
    links: links[];
 }
-const Canvas = (props: props) => {
-   const { header, links } = props;
+const Canvas: FC<props> = ({ header, links }) => {
    return (
       <>
          <div className="offcanvas-header">

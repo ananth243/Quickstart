@@ -7,7 +7,7 @@ import Modal from 'bootstrap/js/dist/modal';
 import Loading from '../../components/Loading';
 import { order } from '../../interfaces/order';
 
-const History = () => {
+const History: React.FC = () => {
    interface datatype {
       orders: order[];
    }

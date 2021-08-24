@@ -2,13 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../../components/Cards';
 import useFetch from '../../Hooks/useFetch';
+import { order } from '../../interfaces/order';
 
-const Order = () => {
-   interface orders {
-      _id: string;
-   }
+const Order: React.FC = () => {
    interface datatype {
-      data: orders[];
+      orders: order[];
    }
 
    const history = useHistory();

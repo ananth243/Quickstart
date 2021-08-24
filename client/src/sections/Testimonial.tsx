@@ -4,8 +4,9 @@ import axios from 'axios';
 import logo from '../img/Quickstart.png';
 import { useHistory } from 'react-router-dom';
 import { testaments } from '../interfaces/testament';
+import { FC } from 'react';
 
-const Testimonial = () => {
+const Testimonial: FC = () => {
    const [data, setData] = useState<testaments[]>();
    const history = useHistory();
    useEffect(() => {

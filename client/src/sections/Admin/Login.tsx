@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 // import { useAuth } from "../../Hooks/AuthProvider";
 
-const Admin = () => {
+const Admin: React.FC = () => {
    const history = useHistory();
    const [username, setName] = useState('');
    const [password, setPassword] = useState('');
@@ -11,7 +11,7 @@ const Admin = () => {
    const [passwordError, setPasswordError] = useState('');
    // const state = useAuth();
 
-   function handleSubmit(e) {
+   function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
       axios
          .post(`${process.env.REACT_APP_SERVER}/admin`, {
@@ -72,7 +72,7 @@ const Admin = () => {
                   <button
                      type="submit"
                      className="btn btn-primary mb-2 mt-4"
-                     onClick={handleSubmit}
+                     onClick={e => handleSubmit(e)}
                   >
                      Submit
                   </button>

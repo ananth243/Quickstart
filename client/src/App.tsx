@@ -4,14 +4,17 @@ import logo from './img/Quickstart.png';
 import Credits from './sections/Credits';
 import Canvas from './components/offCanvas';
 
-function App() {
+const App: React.FC = () => {
    interface rating {
       avgExperience: Number;
    }
-   const [data, setData] = useState<rating>({ avgExperience: 10 });
+   interface ratings {
+      ratings: rating[];
+   }
+   const [data, setData] = useState<rating>();
    useEffect(() => {
       axios
-         .get(`${process.env.REACT_APP_SERVER}/ratings`)
+         .get<ratings>(`${process.env.REACT_APP_SERVER}/ratings`)
          .then(res => {
             setData(res.data.ratings[0]);
          })
@@ -136,6 +139,6 @@ function App() {
          )}
       </>
    );
-}
+};
 
 export default App;

@@ -3,7 +3,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import useFetch from '../../Hooks/useFetch';
 import React, { MouseEvent, FormEvent, useRef, useState } from 'react';
 import axios from 'axios';
-import Items from '../../components/ItemCards';
 import Placed from '../../components/Placed';
 import Loading from '../../components/Loading';
 import { items as order } from '../../interfaces/order';
@@ -13,7 +12,7 @@ function useQuery() {
    return new URLSearchParams(useLocation().search);
 }
 
-const Orders = () => {
+const Orders: React.FC = () => {
    const [orderArray, setOrderArray] = useState<order[] | null>(null);
    const [order, setOrder] = useState('');
    const [address, setAddress] = useState<string | null>(null);
@@ -110,7 +109,82 @@ const Orders = () => {
                <br />
                <div className="gallery ms-4 me-4">
                   {data.menu.map((food, i) => (
-                     <Items key={i} food={food} click={e => click(e)} />
+                     <div
+                        key={i}
+                        id={food._id}
+                        className="card border border-4 rounded "
+                        data-bs-toggle="toggle"
+                        data-bs-target={`#${food._id}`}
+                     >
+                        <img
+                           src={food.image}
+                           className="card-img-top img-fluid food "
+                           alt={food.name}
+                        />
+                        <div className="card-body">
+                           <p className="card-text text-lead text-align-center">
+                              {food.sort === 0 && (
+                                 <svg
+                                    width="12.5"
+                                    height="12.5"
+                                    className="mb-1 me-1"
+                                 >
+                                    <circle
+                                       cx="6.25"
+                                       cy="6.25"
+                                       r="5"
+                                       fill="green"
+                                    />
+                                    <rect
+                                       cx="6.25"
+                                       cy="6.25"
+                                       width="12.5"
+                                       height="12.5"
+                                       fill="none"
+                                       strokeWidth="0.75"
+                                       stroke="green"
+                                    />
+                                 </svg>
+                              )}
+                              {food.sort === 1 && (
+                                 <svg
+                                    width="12.5"
+                                    height="12.5"
+                                    className="mb-1 me-1"
+                                 >
+                                    <circle
+                                       cx="6.25"
+                                       cy="6.25"
+                                       r="5"
+                                       fill="red"
+                                    />
+                                    <rect
+                                       cx="6.25"
+                                       cy="6.25"
+                                       width="12.5"
+                                       height="12.5"
+                                       fill="none"
+                                       strokeWidth="0.75"
+                                       stroke="red"
+                                    />
+                                 </svg>
+                              )}
+                              {food.name}
+                           </p>
+                           <br />
+                           <p className="text-warning cost">
+                              Cost: &#8377;{food.cost}
+                              <button
+                                 className="ms-5 btn btn-primary"
+                                 id={food.name}
+                                 value={food.cost}
+                                 onClick={click}
+                              >
+                                 +
+                              </button>
+                           </p>
+                        </div>
+                     </div>
                   ))}
                </div>
                <div className="container-fluid mt-5">

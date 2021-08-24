@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import logo from '../../img/Quickstart.png';
 import Create from './CreateUser';
 
-const Orders = () => {
+const Orders: React.FC = () => {
    const [button1, setButton1] = useState(true);
    const [button2, setButton2] = useState(false);
    const [button3, setButton3] = useState(false);

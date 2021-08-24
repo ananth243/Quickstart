@@ -6,7 +6,7 @@ import Restaurant from '../../components/Restaurants';
 import Loading from '../../components/Loading';
 import { restaurant } from '../../interfaces/restaurant';
 
-const Index = () => {
+const Index: React.FC = () => {
    const history = useHistory();
    const { data, error } = useFetch<restaurant[]>(
       `${process.env.REACT_APP_SERVER}/api/restaurants`,

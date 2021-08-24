@@ -1,11 +1,11 @@
 import React from 'react';
+import { FC } from 'react';
 import { testaments } from '../interfaces/testament';
 interface props {
    testament: testaments;
 }
 
-const Testaments = (props: props) => {
-   const { testament } = props;
+const Testaments: FC<props> = ({ testament }) => {
    return (
       <div className={`container-sm pb-3`}>
          <div className="card nohover mt-5">

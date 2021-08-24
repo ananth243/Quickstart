@@ -5,7 +5,7 @@ import copy from 'copy-to-clipboard';
 import Popover from 'bootstrap/js/dist/popover';
 import Modal from 'bootstrap/js/dist/modal';
 
-const Create = () => {
+const Create: React.FC = () => {
    const [username, setName] = useState('Enter');
    const [password, setPassword] = useState('');
    const [nameError, setNameError] = useState('');

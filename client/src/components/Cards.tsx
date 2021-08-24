@@ -1,13 +1,13 @@
 import React from 'react';
+import { FC } from 'react';
 import { order } from '../interfaces/order';
 interface props {
    order: order;
-   key: string;
-   info: boolean;
-   delivered?: number;
+   key: number | string;
+   info?: boolean;
+   delivered?: boolean;
 }
-const Card = (props: props) => {
-   const { order, info, delivered, key } = props;
+const Card: FC<props> = ({ order, info, key, delivered }) => {
    return (
       <div
          key={key}

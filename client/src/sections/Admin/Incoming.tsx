@@ -3,11 +3,14 @@ import { useHistory } from 'react-router-dom';
 import useFetch from '../../Hooks/useFetch';
 import axios from 'axios';
 import Card from '../../components/Cards';
-import { func } from 'prop-types';
+import { order } from '../../interfaces/order';
 
-const Incoming = ({ Push }) => {
+interface datatype {
+   orders: order[];
+}
+const Incoming: React.FC<{ Push: () => void }> = ({ Push }) => {
    const history = useHistory();
-   const { data, error } = useFetch(
+   const { data, error } = useFetch<datatype>(
       `${process.env.REACT_APP_SERVER}/admin/orders`,
    );
    if (error) {
@@ -20,7 +23,7 @@ const Incoming = ({ Push }) => {
             headers: {
                jwt: localStorage.getItem('jwt'),
             },
-            body: data.orders,
+            body: data?.orders,
          })
          .then(() => {
             Push();
@@ -53,10 +56,6 @@ const Incoming = ({ Push }) => {
          )}
       </div>
    );
-};
-
-Incoming.propTypes = {
-   Push: func,
 };
 
 export default Incoming;
