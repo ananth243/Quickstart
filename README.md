@@ -2,6 +2,7 @@
 # Quickstart
 
 Contains code related to core-review of DEVSOC.
+There is a typescript branch for this repo which is still under development.
 The project is deployed at [quickstart](https://bp-gc.in/quickstart)
 
 **Note: In order to access the admin section credentials are required for which you have to contact me.**
