@@ -121,7 +121,7 @@ const Orders = () => {
                   className={`h-auto ms-5 w-25`}
                >
                   {' '}
-                  Finished orders
+                  Delivered orders
                </button>
             </div>
          </div>

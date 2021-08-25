@@ -1,4 +1,4 @@
-import Profile from '../img/me.jpg';
+import Profile from '../img/me.png';
 import React from 'react';
 
 const Credits = () => {

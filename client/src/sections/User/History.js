@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import React, { useEffect, useRef } from 'react';
 import Modal from '../../../node_modules/bootstrap/js/src/modal';
 import Loading from '../../components/Loading';
+import Rate from '../../components/Rate';
 
 const History = () => {
    const history = useHistory();
@@ -72,6 +73,7 @@ const History = () => {
             </div>
          )}
          {!data && <Loading />}
+         <Rate />
       </>
    );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../../components/Cards';
 import useFetch from '../../Hooks/useFetch';
+import Loading from '../../components/Loading';
 
 const Order = () => {
    const history = useHistory();
@@ -17,6 +18,7 @@ const Order = () => {
             data.data.orders.map(order => (
                <Card key={order._id} order={order} />
             ))}
+         {!data && <Loading />}
       </div>
    );
 };

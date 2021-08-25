@@ -11,7 +11,6 @@ const Navbar = () => {
    const links = [
       ['Placed Orders', '/orders'],
       ['Order History', '/delivered'],
-      ['Rate us', '/rating'],
    ];
    function Logout(e) {
       e.preventDefault();

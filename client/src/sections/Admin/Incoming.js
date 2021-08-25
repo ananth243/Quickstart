@@ -4,7 +4,7 @@ import useFetch from '../../Hooks/useFetch';
 import axios from 'axios';
 import Card from '../../components/Cards';
 import { func } from 'prop-types';
-
+import Loading from '../../components/Loading';
 const Incoming = ({ Push }) => {
    const history = useHistory();
    const [data, error] = useFetch(
@@ -46,11 +46,13 @@ const Incoming = ({ Push }) => {
                )}
                {data.data.orders.length === 0 && (
                   <h3 className="display-6 ms-4">
-                     All Orders have been delivered
+                     All Orders have been delivered and there are no pending
+                     ones
                   </h3>
                )}
             </>
          )}
+         {!data && <Loading />}
       </div>
    );
 };

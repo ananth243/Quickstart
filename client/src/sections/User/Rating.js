@@ -38,8 +38,12 @@ const Rating = () => {
       <>
          <Navbar />
          <div style={{ marginTop: '6rem' }}>
-            <form className="container-sm" ref={formRef}>
-               <h4 className="fs-3 text-uppercase">
+            <form
+               className="container-sm"
+               ref={formRef}
+               style={{ textTransform: 'uppercase' }}
+            >
+               <h4 className="display-6" style={{ textTransform: 'none' }}>
                   Thank you for taking time to fill the form. We value your
                   input.
                </h4>
@@ -50,7 +54,7 @@ const Rating = () => {
                   type="range"
                   style={{
                      width: '75%',
-                     backgroundColor: '#0dcaf0',
+                     backgroundColor: 'rgba(5,155,254, 0.1)',
                      borderRadius: '3px 3px 3px 3px',
                   }}
                   className="form-range"
@@ -65,7 +69,7 @@ const Rating = () => {
                   type="range"
                   style={{
                      width: '75%',
-                     backgroundColor: '#0dcaf0',
+                     backgroundColor: 'rgba(5,155,254, 0.1)',
                      borderRadius: '3px 3px 3px 3px',
                   }}
                   className="form-range"
@@ -81,7 +85,7 @@ const Rating = () => {
                   type="range"
                   style={{
                      width: '75%',
-                     backgroundColor: '#0dcaf0',
+                     backgroundColor: 'rgba(5,155,254, 0.1)',
                      borderRadius: '3px 3px 3px 3px',
                   }}
                   className="form-range"
@@ -89,7 +93,6 @@ const Rating = () => {
                   max="10"
                   id="customRange3"
                />
-               <br />
                <label htmlFor="address" className="form-label mt-4">
                   Any additional inputs are also welcome.
                </label>

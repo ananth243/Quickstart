@@ -6,6 +6,7 @@ import axios from 'axios';
 import Items from '../../components/ItemCards';
 import Placed from '../../components/Placed';
 import Loading from '../../components/Loading';
+import Rate from '../../components/Rate';
 
 function useQuery() {
    return new URLSearchParams(useLocation().search);
@@ -80,72 +81,79 @@ const Orders = () => {
       }
    }
    return (
-      <div>
-         <Navbar />
-         {data && (
-            <>
-               <div className="container-fluid mt-6 background">
-                  <h2>{data.data.rest_name}</h2>
-                  <p className="text-lead">
-                     Address: {data.data.details.address}
-                  </p>
-                  <img
-                     src={data.data.details.image}
-                     alt={data.data.rest_name}
-                     className="img-thumbnail border border-3 rounded"
-                  />
-                  <p className="text-muted ms-1 mt-4">
-                     {data.data.details.description}
-                  </p>
-                  <p className="fs-2">Our Menu: </p>
-               </div>
-               <br />
-               <div className="gallery ms-4 me-4">
-                  {data.data.menu.map((food, i) => (
-                     <Items key={i} food={food} click={click} />
-                  ))}
-               </div>
-               <div className="container-fluid mt-5">
-                  {total !== 0 && <h3 className="ms-4 mb-2">Your order: </h3>}
-                  <form onSubmit={handleSubmit}>
-                     <ul className="list-group addItem"></ul>
-                     <ul>
-                        {orderArray.map((order, j) => (
-                           <Placed key={j} order={order} />
-                        ))}
-                     </ul>
-                     <div
-                        className={`input-group ms-3 mb-${total === 0 ? 5 : 3}`}
-                        style={{ width: '97%' }}
-                     >
-                        <span className="input-group-text">
-                           Your delivery address:
-                        </span>
-                        <textarea
-                           ref={addressRef}
-                           onChange={e => setAddress(e.target.value)}
-                           style={{ height: '6rem' }}
-                           className="form-control"
-                           aria-label="With textarea"
-                        ></textarea>
-                     </div>
-                     {total === 0 && order}
+      <>
+         <div>
+            <Navbar />
+            {data && (
+               <>
+                  <div className="container-fluid mt-6 background">
+                     <h2>{data.data.rest_name}</h2>
+                     <p className="text-lead">
+                        Address: {data.data.details.address}
+                     </p>
+                     <img
+                        src={data.data.details.image}
+                        alt={data.data.rest_name}
+                        className="img-thumbnail border border-3 rounded"
+                     />
+                     <p className="text-muted ms-1 mt-4">
+                        {data.data.details.description}
+                     </p>
+                     <p className="fs-2">Our Menu: </p>
+                  </div>
+                  <br />
+                  <div className="gallery ms-4 me-4">
+                     {data.data.menu.map((food, i) => (
+                        <Items key={i} food={food} click={click} />
+                     ))}
+                  </div>
+                  <div className="container-fluid mt-5">
                      {total !== 0 && (
-                        <>
-                           <h2 className="text-danger ms-3 mt-2">
-                              Your total is: &#8377;{total}
-                           </h2>
-                           <button className="btn btn-primary ms-4 mb-5">
-                              Submit
-                           </button>
-                        </>
+                        <h3 className="ms-4 mb-2">Your order: </h3>
                      )}
-                  </form>
-               </div>
-            </>
-         )}
-         {!data && <Loading />}
-      </div>
+                     <form onSubmit={handleSubmit}>
+                        <ul className="list-group addItem"></ul>
+                        <ul>
+                           {orderArray.map((order, j) => (
+                              <Placed key={j} order={order} />
+                           ))}
+                        </ul>
+                        <div
+                           className={`input-group ms-3 mb-${
+                              total === 0 ? 5 : 3
+                           }`}
+                           style={{ width: '97%' }}
+                        >
+                           <span className="input-group-text">
+                              Your delivery address:
+                           </span>
+                           <textarea
+                              ref={addressRef}
+                              onChange={e => setAddress(e.target.value)}
+                              style={{ height: '6rem' }}
+                              className="form-control"
+                              aria-label="With textarea"
+                           ></textarea>
+                        </div>
+                        {total === 0 && order}
+                        {total !== 0 && (
+                           <>
+                              <h2 className="text-danger ms-3 mt-2">
+                                 Your total is: &#8377;{total}
+                              </h2>
+                              <button className="btn btn-primary ms-4 mb-5">
+                                 Submit
+                              </button>
+                           </>
+                        )}
+                     </form>
+                  </div>
+               </>
+            )}
+            {!data && <Loading />}
+         </div>
+         <Rate />
+      </>
    );
 };
 
